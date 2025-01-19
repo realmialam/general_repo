@@ -1,0 +1,547 @@
+	. They are:
+
+By new keyword
+By newInstance() method
+By clone() method
+By deserialization
+By factory method etc.
+
+
+
+--------------------------------------------------
+
+What is the purpose of Constructor class?
+Java provides a Constructor class which can be used to get the internal information of a constructor in the class. It is found in the java.lang.reflect package.
+
+-------------------------------------------
+
+Note: Multiple inheritance is not supported in Java through class.
+
+-----------------------------------------------------------
+No, a static method cannot be overridden. It can be proved by runtime polymorphism, so we will learn it later.
+------------------------------------------------------------------
+
+Note: A class cannot be private or protected except nested class.
+
+----------------------------------------------------------------------
+
+If you are overriding any method, overridden method (i.e. declared in subclass) must not be more restrictive.
+
+
+
+class A{  
+protected void msg(){System.out.println("Hello java");}  
+}  
+  
+public class Simple extends A{  
+void msg(){System.out.println("Hello java");}//C.T.Error  
+ public static void main(String args[]){  
+   Simple obj=new Simple();  
+   obj.msg();  
+   }  
+}  
+
+
+The default modifier is more restrictive than protected. That is why, there is a compile-time error.
+
+---------------------------------------------------------------
+
+Covariant Return Type
+
+The covariant return type specifies that the return type may vary in the same direction as the subclass.
+
+class A{    
+A get(){return this;}    
+}    
+    
+class B1 extends A{    
+@Override  
+B1 get(){return this;}    
+void message(){System.out.println("welcome to covariant return type");}    
+    
+public static void main(String args[]){    
+new B1().get().message();    
+}    
+}    
+---------------------------------------------------------------------------
+
+
+Super Keyword in Java
+
+The super keyword in Java is a reference variable which is used to refer immediate parent class object.
+
+Whenever you create the instance of subclass, an instance of parent class is created implicitly which is referred by super reference variable.
+
+Note: super() is added in each class constructor automatically by compiler if there is no super() or this().
+
+
+
+
+---------------------------------------------------
+
+Instance initializer block
+Instance initializer block
+Example of Instance initializer block
+What is invoked firstly instance initializer block or constructor?
+Rules for instance initializer block
+Program of instance initializer block that is invoked after super()
+Instance Initializer block is used to initialize the instance data member. It run each time when object of the class is created.
+
+
+
+class Bike7{  
+    int speed;  
+      
+    Bike7(){System.out.println("speed is "+speed);}  
+   
+    {speed=100;}  
+       
+    public static void main(String args[]){  
+    Bike7 b1=new Bike7();  
+    Bike7 b2=new Bike7();  
+    }      
+}  
+Test it Now
+Output:speed is 100
+       speed is 100
+
+
+
+What is invoked first, instance initializer block or constructor?
+
+Ans -  instance initializer block 
+
+
+Note: The java compiler copies the code of instance initializer block in every constructor.
+
+Rules for instance initializer block :
+There are mainly three rules for the instance initializer block. They are as follows:
+The instance initializer block is created when instance of the class is created.
+The instance initializer block is invoked after the parent class constructor is invoked (i.e. after super() constructor call).
+The instance initializer block comes in the order in which they appear.
+
+
+
+---------------------------------------------------------------------------------------------------------------
+
+
+Final Keyword In Java
+
+Q) Is final method inherited?
+Ans) Yes, final method is inherited but you cannot override it. For Example:
+
+
+What is blank or uninitialized final variable?
+
+A final variable that is not initialized at the time of declaration is known as blank final variable.
+
+If you want to create a variable that is initialized at the time of creating object and once initialized may not be changed, it is useful. For example PAN CARD number of an employee.
+
+It can be initialized only in constructor.
+
+
+static blank final variable
+A static final variable that is not initialized at the time of declaration is known as static blank final variable. It can be initialized only in static block.
+
+
+Q) What is final parameter?
+If you declare any parameter as final, you cannot change the value of it.
+
+class Bike11{  
+  int cube(final int n){  
+   n=n+2;//can't be changed as n is final  
+   n*n*n;  
+  }  
+  public static void main(String args[]){  
+    Bike11 b=new Bike11();  
+    b.cube(5);  
+ }  
+}  
+
+
+
+Q) Can we declare a constructor final?
+No, because constructor is never inherited.
+
+---------------------------------------------------------------------------
+
+
+
+
+Runtime Polymorphism in Java
+
+
+Runtime polymorphism or Dynamic Method Dispatch is a process in which a call to an overridden method is resolved at runtime rather than compile-time.
+
+Upcasting
+If the reference variable of Parent class refers to the object of Child class, it is known as upcasting. For example:
+
+Rule: Runtime polymorphism can't be achieved by data members.
+
+
+
+
+-----------------------------------------------------------------------------
+
+static binding
+When type of the object is determined at compiled time(by the compiler), it is known as static binding.
+
+If there is any private, final or static method in a class, there is static binding.
+
+Example of static binding
+class Dog{  
+ private void eat(){System.out.println("dog is eating...");}  
+  
+ public static void main(String args[]){  
+  Dog d1=new Dog();  
+  d1.eat();  
+ }  
+}  
+
+
+
+
+
+------------------------------------------------------------------------------
+
+
+An object of subclass type is also a type of parent class. For example, if Dog extends Animal then object of Dog can be referred by either Dog or Animal class.
+
+
+Another example of java instanceof operator
+class Animal{}  
+class Dog1 extends Animal{//Dog inherits Animal  
+  
+ public static void main(String args[]){  
+ Dog1 d=new Dog1();  
+ System.out.println(d instanceof Animal);//true  
+ }  
+}  
+
+
+instanceof in java with a variable that have null value
+If we apply instanceof operator with a variable that have null value, it returns false. Let's see the example given below where we apply instanceof operator with the variable that have null value.
+
+class Dog2{  
+ public static void main(String args[]){  
+  Dog2 d=null;  
+  System.out.println(d instanceof Dog2);//false  
+ }  
+}  
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+Downcasting with java instanceof operator
+
+
+
+class Animal { }  
+  
+class Dog3 extends Animal {  
+  static void method(Animal a) {  
+    if(a instanceof Dog3){  
+       Dog3 d=(Dog3)a;//downcasting  
+       System.out.println("ok downcasting performed");  
+    }  
+  }  
+   
+  public static void main (String [] args) {  
+    Animal a=new Dog3();  
+    Dog3.method(a);  
+  }  
+    
+ }  
+ 
+ 
+ 
+ Downcasting without the use of java instanceof
+Downcasting can also be performed without the use of instanceof operator as displayed in the following example:
+
+class Animal { }  
+class Dog4 extends Animal {  
+  static void method(Animal a) {  
+       Dog4 d=(Dog4)a;//downcasting  
+       System.out.println("ok downcasting performed");  
+  }  
+   public static void main (String [] args) {  
+    Animal a=new Dog4();  
+    Dog4.method(a);  
+  }  
+}  
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------
+
+Abstraction is a process of hiding the implementation details and showing only functionality to the user.
+
+There are two ways to achieve abstraction in java
+
+Abstract class (0 to 100%)
+Interface (100%)
+
+Points to Remember
+An abstract class must be declared with an abstract keyword.
+It can have abstract and non-abstract methods.
+It cannot be instantiated.
+It can have constructors and static methods also.
+It can have final methods which will force the subclass not to change the body of the method.
+
+
+An abstract class can have a data member, abstract method, method body (non-abstract method), constructor, and even main() method.
+
+Rule: If there is an abstract method in a class, that class must be abstract.
+
+Rule: If you are extending an abstract class that has an abstract method, you must either provide the implementation of the method or make this class abstract.
+
+
+
+Another real scenario of abstract class
+The abstract class can also be used to provide some implementation of the interface. In such case, the end user may not be forced to override all the methods of the interface.
+
+Note: If you are beginner to java, learn interface first and skip this example.
+interface A{  
+void a();  
+void b();  
+void c();  
+void d();  
+}  
+  
+abstract class B implements A{  
+public void c(){System.out.println("I am c");}  
+}  
+  
+class M extends B{  
+public void a(){System.out.println("I am a");}  
+public void b(){System.out.println("I am b");}  
+public void d(){System.out.println("I am d");}  
+}  
+  
+class Test5{  
+public static void main(String args[]){  
+A a=new M();  
+a.a();  
+a.b();  
+a.c();  
+a.d();  
+}}  
+Test it Now
+Output:I am a
+       I am b
+       I am c
+       I am d
+	   
+	   
+	   
+	   
+-----------------------------------------------------------------------------------------------------
+
+Interface in Java
+Interface
+An interface in Java is a blueprint of a class. It has static constants and abstract methods.
+
+The interface in Java is a mechanism to achieve abstraction. There can be only abstract methods in the Java interface, not method body. It is used to achieve abstraction and multiple inheritance in Java.
+
+
+
+It cannot be instantiated just like the abstract class.
+
+Since Java 8, we can have default and static methods in an interface.
+
+Since Java 9, we can have private methods in an interface.
+
+
+There are mainly three reasons to use interface. They are given below.
+
+It is used to achieve abstraction.
+By interface, we can support the functionality of multiple inheritance.
+It can be used to achieve loose coupling.
+
+
+Java 8 Interface Improvement
+Since Java 8, interface can have default and static methods which is discussed later.
+
+Internal addition by the compiler
+The Java compiler adds public and abstract keywords before the interface method. Moreover, it adds public, static and final keywords before data members.
+
+
+Multiple inheritance in Java by interface
+If a class implements multiple interfaces, or an interface extends multiple interfaces, it is known as multiple inheritance.
+
+
+
+interface Printable{  
+void print();  
+}  
+interface Showable{  
+void print();  
+}  
+  
+class TestInterface3 implements Printable, Showable{  
+public void print(){System.out.println("Hello");}  
+public static void main(String args[]){  
+TestInterface3 obj = new TestInterface3();  
+obj.print();  
+ }  
+}  
+
+
+
+
+Interface inheritance
+A class implements an interface, but one interface extends another interface.
+
+interface Printable{  
+void print();  
+}  
+interface Showable extends Printable{  
+void show();  
+}  
+class TestInterface4 implements Showable{  
+public void print(){System.out.println("Hello");}  
+public void show(){System.out.println("Welcome");}  
+  
+public static void main(String args[]){  
+TestInterface4 obj = new TestInterface4();  
+obj.print();  
+obj.show();  
+ }  
+}  
+Test it Now
+Output:
+
+Hello
+Welcome
+
+
+
+
+
+Java 8 Default Method in Interface
+Since Java 8, we can have method body in interface. But we need to make it default method. Let's see an example:
+
+File: TestInterfaceDefault.java
+
+interface Drawable{  
+void draw();  
+default void msg(){System.out.println("default method");}  
+}  
+class Rectangle implements Drawable{  
+public void draw(){System.out.println("drawing rectangle");}  
+}  
+class TestInterfaceDefault{  
+public static void main(String args[]){  
+Drawable d=new Rectangle();  
+d.draw();  
+d.msg();  
+}}  
+Test it Now
+Output:
+
+drawing rectangle
+default method
+Java 8 Static Method in Interface
+Since Java 8, we can have static method in interface. Let's see an example:
+
+File: TestInterfaceStatic.java
+
+interface Drawable{  
+void draw();  
+static int cube(int x){return x*x*x;}  
+}  
+class Rectangle implements Drawable{  
+public void draw(){System.out.println("drawing rectangle");}  
+}  
+  
+class TestInterfaceStatic{  
+public static void main(String args[]){  
+Drawable d=new Rectangle();  
+d.draw();  
+System.out.println(Drawable.cube(3));  
+}}  
+Test it Now
+Output:
+
+drawing rectangle
+27
+
+
+
+
+
+Q) What is marker or tagged interface?
+An interface which has no member is known as a marker or tagged interface, for example, Serializable, Cloneable, Remote, etc. They are used to provide some essential information to the JVM so that JVM may perform some useful operation.
+
+
+
+
+Nested Interface in Java
+Note: An interface can have another interface which is known as a nested interface. We will learn it in detail in the nested classes chapter. For example:
+
+interface printable{  
+ void print();  
+ interface MessagePrintable{  
+   void msg();  
+ }  
+}  
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+
+Difference between abstract class and interface
+------------------------------------------------
+
+Interface can have only abstract methods. Since Java 8, it can have default and static methods also.
+Interface supports multiple inheritance.
+Interface has only static and final variables.
+Members of a Java interface are public by default.
+
+
+
+
+----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------

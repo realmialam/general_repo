@@ -1,0 +1,36 @@
+Java String
+-----------
+Note: String objects are stored in a special memory area known as the "string constant pool".
+
+The Java String class equals() method compares the two given strings based on the content of the string. If any character is not matched, it returns false. If all characters are matched, it returns true.
+
+The String equals() method overrides the equals() method of the Object class.
+
+------------------------------------
+
+Java String compare
+java string comparison
+We can compare String in Java on the basis of content and reference.
+
+It is used in authentication (by equals() method), sorting (by compareTo() method), reference matching (by == operator) etc.
+
+There are three ways to compare String in Java:
+
+By Using equals() Method
+By Using == Operator
+By compareTo() Method
+
+-----------------------------------------------------------------
+
+1) String Concatenation by + (String concatenation) operator
+
+	String s="Sachin"+" Tendulkar";  
+	Compiler: String s=(new StringBuilder()).append("Sachin").append(" Tendulkar).toString();  
+
+
+String s=50+30+"Sachin"+40+40;  
+System.out.println(s);//80Sachin4040 
+
+Note: After a string literal, all the + will be treated as string concatenation operator.
+
+ 

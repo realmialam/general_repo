@@ -1,0 +1,37 @@
+Java Package
+--------------
+A java package is a group of similar types of classes, interfaces and sub-packages.
+
+Package in java can be categorized in two form, built-in package and user-defined package.
+
+There are many built-in packages such as java, lang, awt, javax, swing, net, io, util, sql etc.
+
+-----------------------------------------
+To Compile: javac -d . Simple.java
+
+To Run: java mypack.Simple
+
+The -d is a switch that tells the compiler where to put the class file i.e. it represents destination. The . represents the current folder.
+---------------------------------------------------------
+
+Note: If you import a package, subpackages will not be imported.
+
+--------------------------------------------------------------------
+
+There are two types of modifiers in Java: access modifiers and non-access modifiers.
+
+		There are many non-access modifiers, such as static, abstract, synchronized, native, volatile, transient, etc.
+		
+
+Note: A class cannot be private or protected except nested class.
+
+
+The protected access modifier can be applied on the data member, method and constructor. It can't be applied on the class.
+
+The protected access modifier can be applied on the data member, method and constructor. It can't be applied on the class.
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+Encapsulation 
+
+Encapsulation in Java is a process of wrapping code and data together into a single unit, for example, a capsule which is mixed of several medicines.
