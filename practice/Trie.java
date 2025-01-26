@@ -1,3 +1,5 @@
+
+import java.util.*;
 public class Trie{
 
 	static Node root = new Node();
@@ -55,6 +57,43 @@ public class Trie{
 		
 	}
 
+	public static boolean wordBreak(String word){
+
+		if("".equals(word)){return true;}
+		
+		for(int i=1; i<=word.length(); i++){
+			String firstPart = word.substring(0,i);
+			String secondPart = word.substring(i);
+			
+			if(search(firstPart) && wordBreak(secondPart)){
+				return true;
+			}
+		}
+
+		return false;
+
+	}
+
+	public static boolean wordBreakDP(String word, Map<String, Boolean> memo){
+
+		if("".equals(word)){return true;}
+
+		if(memo.containsKey(word)){return true;}
+		
+		for(int i=1; i<=word.length(); i++){
+			String firstPart = word.substring(0,i);
+			String secondPart = word.substring(i);
+			
+			if(search(firstPart) && wordBreak(secondPart)){
+				memo.put(word, true);
+				return true;
+			}
+		}
+
+		return false;
+
+	}
+
 
 	
 	
@@ -80,6 +119,25 @@ public class Trie{
         	System.out.println("Search 'java': " + trie.search("java"));         // false
         	System.out.println("Search 'dat': " + trie.search("dat"));           // false
         	System.out.println("Search 'struc': " + trie.search("struc"));       // false
+
+
+		// find if given key is present in the dictionary or not
+
+		// Insert words into the Trie
+        	trie.insert("i");
+        	trie.insert("like");
+        	trie.insert("samsung");
+        	trie.insert("ice");
+        	trie.insert("sam");
+
+		if(wordBreak("ilikesamsung")){
+			System.out.println("Hai ji");
+		}
+		if(wordBreakDP("ilikesamsung", new HashMap<String, Boolean>())){
+			System.out.println("Hai ji");
+		}
+
+		
 		
 	}
 
