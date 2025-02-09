@@ -93,6 +93,21 @@ public class Trie{
 		return false;
 
 	}
+	
+	public static boolean startsWith(String prefix){
+		
+		Node curr = root;
+		
+		for(int i=0; i<prefix.length(); i++){
+			if(curr.characters[prefix.charAt(i)]==null){
+				return false;
+			}
+			curr = curr.characters[prefix.charAt(i)];
+		}
+		
+		return true;
+		
+	}
 
 
 	
@@ -136,6 +151,22 @@ public class Trie{
 		if(wordBreakDP("ilikesamsung", new HashMap<String, Boolean>())){
 			System.out.println("Hai ji");
 		}
+		
+		
+		// find if prefix exist in dictionary
+		
+		// Insert words into the Trie
+        trie.insert("hello");
+        trie.insert("hell");
+        trie.insert("he");
+
+        // Test startsWith function
+        System.out.println("Starts with 'he': " + startsWith("he"));   // Should return true
+        System.out.println("Starts with 'hell': " + startsWith("hell")); // Should return true
+        System.out.println("Starts with 'hello': " + startsWith("hello")); // Should return true
+        System.out.println("Starts with 'hero': " + startsWith("hero")); // Should return false
+        System.out.println("Starts with 'helloo': " + startsWith("helloo")); // Should return false
+		
 
 		
 		
